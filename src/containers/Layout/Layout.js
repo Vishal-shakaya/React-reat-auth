@@ -1,7 +1,9 @@
 import React from 'react';
+import {Link} from 'react-router-dom'
 import { Layout, Menu, Breadcrumb } from 'antd';
-
+import { NavLink } from 'react-router-dom'
 const LayoutDefine = (props) => {
+
 const { Header, Content, Footer } = Layout;
 return(
   <Layout className="layout">
@@ -9,9 +11,20 @@ return(
     <Header>
       <div className="logo" />
       <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['2']}>
-        <Menu.Item key="1">nav 1</Menu.Item>
-        <Menu.Item key="2">nav 2</Menu.Item>
-        <Menu.Item key="3">nav 3</Menu.Item>
+       { props.isAuthenticated ? 
+          <Menu.Item key="2">
+            <NavLink to='/logout'> Logout </NavLink>
+          </Menu.Item>
+          :
+           <Menu.Item key="2">
+            <NavLink to='/login'> Login </NavLink>
+          </Menu.Item>
+       }
+        
+        
+        <Menu.Item key="3">
+            <NavLink to='/'> Post </NavLink>
+        </Menu.Item>
       </Menu>
     </Header>
     <Content style={{ padding: '0 50px' }}>

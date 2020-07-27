@@ -1,7 +1,6 @@
 import React from 'react';
 import { List, Avatar, Space } from 'antd';
 import { MessageOutlined, LikeOutlined, StarOutlined } from '@ant-design/icons';
-import { Link } from 'react-router-dom'
 
 const Articles = (props) => {
 

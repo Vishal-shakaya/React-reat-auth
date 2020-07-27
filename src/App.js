@@ -1,17 +1,37 @@
-import React from 'react';
+import React , {useEffect} from 'react';
 import 'antd/dist/antd.css';
 import Layout from './containers/Layout/Layout'; 
 // import  ArticleList from './containers/ArticleList/ArticleList';
 import Router from './Router';
-function App() {
+import * as action from './store/action/auth'
+import { connect } from 'react-redux'
+
+function App(props) {
+  
+  useEffect(()=>{
+   props.checkAuthentication()
+  },[])
+
   return (
     <div className="App">
-      <Layout>
+      <Layout {...props}>
        <Router/>      
       </Layout>
    </div>
   );
 }
 
-export default App;
+const mapStateToProps = state => {
+	return {
+
+		 isAuthenticated: state.auth.token !==null
+	}
+}
+
+const mapDispatchToProps = dispatch => {
+	return {
+		checkAuthentication : () => dispatch(action.checkAuthentication())
+	}
+}
+export default connect(mapStateToProps, mapDispatchToProps)(App);
 
